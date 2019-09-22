@@ -1,15 +1,17 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-
+  before_action :authorize_request, except: :create
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+    render json: @user, status: :ok
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    render json: @user, status: :ok
   end
 
   # POST /users
@@ -48,6 +50,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:user_name, :email, :password_digest)
+      params.require(:user).permit(:username, :email, :password_digest)
     end
 end
