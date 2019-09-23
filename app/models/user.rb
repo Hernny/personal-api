@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-    has_secure_passwrod
-    mount_uploader :avatar, AvatarUploarder
+    has_secure_password
+    #mount_uploader :avatar, AvatarUploarder
     validates :email, presence: true, uniqueness: true
     validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}
     validates :username, presence: true, uniqueness: true
